@@ -1,18 +1,19 @@
-import '@/app/globals.css'
+import "@/app/globals.css";
 
 export default function Footer() {
   return (
-    <footer className="text-gray-600 body-font">
+    <footer className="body-font text-gray-600">
       <div className="bg-gray-100">
-        <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-          <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <div className="container mx-auto flex flex-col items-center px-5 py-6 sm:flex-row">
+          <a className="title-font flex items-center justify-center font-medium text-gray-900 md:justify-start">
             {/*로고 들어갈 자리*/}
             <span className="ml-3 text-xl">projectName</span>
           </a>
-          <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2024 projectName
+          <p className="mt-4 text-sm text-gray-500 sm:ml-6 sm:mt-0">
+            © 2024 projectName
           </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
