@@ -14,9 +14,15 @@ export default class Main extends React.Component<
   }
 
   handleTranslate = (originText: string) => {
-    const translatedText = "번역 ->" + ' "' + originText + '"';
-    console.log(translatedText);
-    this.setState({ translatedText });
+    const url = "http://localhost:8080/translate?originText=" + originText;
+    fetch(url, {
+      method: "get",
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        this.setState({ translatedText: json.translateText });
+      });
   };
 
   render() {
