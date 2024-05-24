@@ -9,13 +9,15 @@ export default function TranslateResult({
 }: {
   translatedText: string;
 }) {
+  // 테스트 내용물
+  const exampleText = "여기에 예시 내용물을 넣어주세요.";
   return (
     <div className="mx-8 flex h-full w-full flex-col">
       <div
         id="translateresult"
         className="mb-1 flex-grow resize-none rounded-md border-2 border-solid p-10 text-xl"
       >
-        {translatedText}
+        {translatedText || exampleText}
       </div>
       <div className="mb-8 flex h-16 rounded-md border-2 border-gray-300">
         <CopyText />
