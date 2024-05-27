@@ -6,7 +6,7 @@ function showCustomAlert(title: string, message: string, type: string) {
   Swal(title, message, type);
 }
 
-export default function CopyText() {
+export default function SendEmail() {
   const [showIcons, setShowIcons] = useState(false);
 
   const handleClick = () => {
@@ -14,8 +14,7 @@ export default function CopyText() {
       const translateResult = document.getElementById("translateresult");
 
       if (translateResult?.innerText) {
-        navigator.clipboard.writeText(translateResult.innerText);
-        setShowIcons(true); // 아이콘 보이기
+        setShowIcons(true);
       } else {
         showCustomAlert(
           "복사에 실패하였습니다.",
@@ -51,19 +50,25 @@ export default function CopyText() {
       {showIcons && (
         <div className="absolute left-0 top-full mt-2 flex space-x-2 rounded-md border border-gray-300 bg-white p-2 shadow-md">
           <button
-            onClick={() => handleIconClick("https://mail.naver.com/")}
+            onClick={() => handleIconClick("https://mail.naver.com/v2/new ")}
             className="flex items-center justify-center rounded border border-gray-300 p-2 hover:bg-gray-200 focus:outline-none"
           >
-            <img src="/icons/naver-icon.png" alt="Naver" className="h-8 w-8" />
+            <img src="/icons/naver__icon.png" alt="Naver" className="h-8 w-8" />
           </button>
           <button
-            onClick={() => handleIconClick("https://mail.daum.net/")}
+            onClick={() =>
+              handleIconClick("https://mail.daum.net/top/INBOX?composer")
+            }
             className="flex items-center justify-center rounded border border-gray-300 p-2 hover:bg-gray-200 focus:outline-none"
           >
             <img src="/icons/daum-icon.png" alt="Daum" className="h-8 w-8" />
           </button>
           <button
-            onClick={() => handleIconClick("https://mail.google.com/")}
+            onClick={() =>
+              handleIconClick(
+                "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new",
+              )
+            }
             className="flex items-center justify-center rounded border border-gray-300 p-2 hover:bg-gray-200 focus:outline-none"
           >
             <img
