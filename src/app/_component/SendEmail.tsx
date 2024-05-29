@@ -1,30 +1,15 @@
 import "@/app/globals.css";
-import Swal from "sweetalert";
 import { useState } from "react";
-
-function showCustomAlert(title: string, message: string, type: string) {
-  Swal(title, message, type);
-}
+import Image from "next/image";
+import naverIcon from "../icons/naver.png";
+import daumIcon from "../icons/daum.png";
+import googleIcon from "../icons/google.png";
 
 export default function SendEmail() {
   const [showIcons, setShowIcons] = useState(false);
 
   const handleClick = () => {
-    try {
-      const translateResult = document.getElementById("translateresult");
-
-      if (translateResult?.innerText) {
-        setShowIcons((prev) => !prev);
-      } else {
-        showCustomAlert(
-          "복사에 실패하였습니다.",
-          "번역 결과가 존재하지 않습니다.",
-          "error",
-        );
-      }
-    } catch (error) {
-      showCustomAlert("Error", "관리자에게 문의 해 주세요.", "warning");
-    }
+    setShowIcons((prev) => !prev);
   };
 
   const handleIconClick = (url: string) => {
@@ -47,35 +32,34 @@ export default function SendEmail() {
           <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
         </svg>
       </button>
+
       {showIcons && (
-        <div className="absolute left-0 top-full mt-2 flex space-x-2 rounded-md border border-gray-300 bg-white p-2 shadow-md">
+        <div className="absolute -right-20 top-16 flex h-20 w-60 space-x-2 rounded-md border border-gray-300 bg-white p-2 shadow-md">
           <button
             onClick={() => handleIconClick("https://mail.naver.com/v2/new")}
-            className="flex items-center justify-center rounded border border-gray-300 p-2 hover:bg-gray-200 focus:outline-none"
+            className="flex items-center justify-center rounded border border-gray-300 hover:bg-gray-200 focus:outline-none"
           >
-            <img src="/icons/naver__icon" alt="Naver" className="h-8 w-8" />
+            <Image src={naverIcon} alt="Naver" width={500} height={500} />
           </button>
+
           <button
             onClick={() =>
               handleIconClick("https://mail.daum.net/top/INBOX?composer")
             }
-            className="flex items-center justify-center rounded border border-gray-300 p-2 hover:bg-gray-200 focus:outline-none"
+            className="flex items-center justify-center rounded border border-gray-300 hover:bg-gray-200 focus:outline-none"
           >
-            <img src="/icons/logo_daum" alt="Daum" className="h-8 w-8" />
+            <Image src={daumIcon} alt="Daum" width={500} height={500} />
           </button>
+
           <button
             onClick={() =>
               handleIconClick(
                 "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new",
               )
             }
-            className="flex items-center justify-center rounded border border-gray-300 p-2 hover:bg-gray-200 focus:outline-none"
+            className="flex items-center justify-center rounded border border-gray-300 hover:bg-gray-200 focus:outline-none"
           >
-            <img
-              src="/icons/7089163_gmail_google_icon"
-              alt="Google"
-              className="h-8 w-8"
-            />
+            <Image src={googleIcon} alt="Google" width={500} height={500} />
           </button>
         </div>
       )}
