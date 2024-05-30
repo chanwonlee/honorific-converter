@@ -3,11 +3,17 @@ import "@/app/globals.css";
 import CopyText from "@/app/_component/Copy";
 import SendEmail from "@/app/_component/SendEmail";
 
-export default function TranslateResult({
+export default ({
   translatedText,
+  onSetEnglish,
 }: {
   translatedText: string;
-}) {
+  onSetEnglish: () => void;
+}) => {
+  const handleClick = () => {
+    onSetEnglish();
+  };
+
   return (
     <div className="mx-8 flex h-full w-full flex-col">
       <div
@@ -19,7 +25,10 @@ export default function TranslateResult({
       <div className="mb-8 flex h-16 rounded-md border-2 border-gray-300">
         <CopyText />
         <SendEmail />
-        <button className="flex h-full w-24 items-center justify-center rounded-l border border-r-2 border-gray-300 hover:bg-gray-200 focus:outline-none">
+        <button
+          className="flex h-full w-24 items-center justify-center rounded-l border border-r-2 border-gray-300 hover:bg-gray-200 focus:outline-none"
+          onClick={handleClick}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -33,4 +42,4 @@ export default function TranslateResult({
       </div>
     </div>
   );
-}
+};
