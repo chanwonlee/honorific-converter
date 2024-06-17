@@ -5,7 +5,7 @@ import TranslateResult from "@/app/_component/TranslateResult";
 import TranslateForm from "@/app/_component/TranslateForm";
 
 export default class Main extends React.Component<
-  {},
+  { language: string },
   { translatedText: string }
 > {
   constructor(props: any) {
@@ -14,15 +14,30 @@ export default class Main extends React.Component<
   }
 
   handleTranslate = (originText: string) => {
-    const url = "http://localhost:8080/translate?originText=" + originText;
-    fetch(url, {
-      method: "get",
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        this.setState({ translatedText: json.translateText });
-      });
+    if (this.props.language === "한국어") {
+      const url =
+        "http://localhost:8080/translate/korean?originText=" + originText;
+      fetch(url, {
+        method: "get",
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json);
+          this.setState({ translatedText: json.translateText });
+        });
+      return;
+    } else {
+      const url =
+        "http://localhost:8080/translate/chinese?originText=" + originText;
+      fetch(url, {
+        method: "get",
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json);
+          this.setState({ translatedText: json.translateText });
+        });
+    }
   };
 
   handleSetEnglish = () => {
