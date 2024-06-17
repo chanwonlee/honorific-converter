@@ -1,6 +1,5 @@
 import "@/app/globals.css";
 import Swal from "sweetalert";
-import { useEffect } from "react";
 
 function showCustomAlert(title: string, message: string, type: string) {
   Swal(title, message, type);

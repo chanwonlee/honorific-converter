@@ -15,7 +15,7 @@ export default ({
   };
 
   return (
-    <div className="mx-8 flex h-full w-full flex-col">
+    <div className="mr-2 box-border flex h-full w-full basis-1/2 flex-col">
       <div
         id="translateresult"
         className="mb-1 flex-grow resize-none rounded-md border-2 border-solid p-10 text-xl"

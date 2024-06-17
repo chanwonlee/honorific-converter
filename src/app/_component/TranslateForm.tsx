@@ -15,9 +15,9 @@ export default ({ onSubmit }: { onSubmit: (text: string) => void }) => {
   };
 
   return (
-    <div className="mx-8 flex h-full w-full flex-col">
+    <div className="mr-2 flex h-full w-full basis-1/2 flex-col">
       <textarea
-        className="flex-grow resize-none rounded-t-md border-l-2 border-r-2 border-t-2 p-10 text-xl focus:outline-none"
+        className="text-md flex-grow resize-none rounded-t-md border-l-2 border-r-2 border-t-2 p-10 focus:outline-none sm:text-xl md:text-2xl"
         value={inputText}
         maxLength={2000}
         onChange={(e) => {

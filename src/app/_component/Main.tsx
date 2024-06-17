@@ -55,7 +55,7 @@ export default class Main extends React.Component<
 
   render() {
     return (
-      <div className="flex h-full justify-between">
+      <div className="mx-8 flex h-full flex-col justify-between sm:flex-row ">
         <TranslateForm onSubmit={this.handleTranslate} />
         <TranslateResult
           translatedText={this.state.translatedText}
