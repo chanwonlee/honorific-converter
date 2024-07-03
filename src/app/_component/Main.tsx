@@ -16,19 +16,19 @@ export default class Main extends React.Component<
   handleTranslate = (originText: string) => {
     if (this.props.language === "한국어") {
       const url =
-        "http://localhost:8080/translate/korean?originText=" + originText;
+        "http://localhost:8000/translate/korean?originText=" + originText;
       fetch(url, {
         method: "get",
       })
         .then((res) => res.json())
         .then((json) => {
           console.log(json);
-          this.setState({ translatedText: json.translateText });
+          this.setState({ translatedText: json.translated_text });
         });
       return;
     } else {
       const url =
-        "http://localhost:8080/translate/chinese?originText=" + originText;
+        "http://localhost:8000/translate/chinese?originText=" + originText;
       fetch(url, {
         method: "get",
       })
