@@ -1,25 +1,22 @@
-"use client";
-import React, { useState } from "react";
-import Header from "@/app/_component/Header";
-import Footer from "@/app/_component/Footer";
-import Main from "@/app/_component/Main";
+import type { Metadata } from "next";
+import "./globals.css";
 
-export default function RootLayout() {
-  const [language, setLanguage] = useState("한국어");
+export const metadata: Metadata = {
+  title: "Daily Mail",
+  description: "Mail Service",
+  icons: {
+    icon: "/image/favicon.ico",
+  },
+};
 
-  const toggleLanguage = () => {
-    setLanguage((prevLanguage) =>
-      prevLanguage === "한국어" ? "中文" : "한국어",
-    );
-  };
-
+export default function RootLayout({
+                                     children,
+                                   }: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html suppressHydrationWarning>
-      <body className="mx-auto flex w-full max-w-screen-2xl flex-col">
-        <Header language={language} toggleLanguage={toggleLanguage} />
-        <Main language={language} />
-        <Footer />
-      </body>
+    <html lang="en">
+    <body className="w-full flex-col flex">{children}</body>
     </html>
   );
 }

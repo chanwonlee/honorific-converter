@@ -2,7 +2,6 @@ import "@/app/globals.css";
 import Image from "next/image";
 import logo from "@/app/icons/logo.png";
 import github from "@/app/icons/github.png";
-import daumIcon from "@/app/icons/daum.png";
 
 export default function Footer() {
   const handleIconClick = (url: string) => {
@@ -25,7 +24,7 @@ export default function Footer() {
             }
             className="flex items-center justify-center rounded border border-gray-300 hover:bg-gray-200 focus:outline-none ml-6 border-none"
           >
-            <Image src={github} alt="Daum" width={25} height={25}/>
+            <Image src={github} alt="github" width={25} height={25} />
           </button>
         </div>
       </div>
