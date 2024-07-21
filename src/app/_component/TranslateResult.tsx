@@ -18,7 +18,7 @@ export default ({
     <div className="mr-2 box-border flex h-full w-full basis-1/2 flex-col">
       <div
         id="translateresult"
-        className="mb-1 flex-grow resize-none rounded-md border-2 border-solid p-10 text-xl"
+        className="mb-1 flex-grow resize-none rounded-md border-2 border-solid p-10 sm:text-xl md:text-2xl"
       >
         {translatedText}
       </div>
