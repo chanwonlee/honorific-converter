@@ -4,6 +4,8 @@ import React from "react";
 import TranslateResult from "@/app/_component/TranslateResult";
 import TranslateForm from "@/app/_component/TranslateForm";
 
+const NGROK_PREFIX = process.env.NEXT_PUBLIC_NGROK_PREFIX;
+
 export default class Main extends React.Component<
   { language: string },
   { translatedText: string }
@@ -16,25 +18,29 @@ export default class Main extends React.Component<
   handleTranslate = (originText: string) => {
     if (this.props.language === "한국어") {
       const url =
-        "http://0.0.0.0:8000/translate/korean?originText=" + originText;
+        NGROK_PREFIX + "translate/korean?originText=" + originText;
       fetch(url, {
         method: "get",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+        }),
       })
         .then((res) => res.json())
         .then((json) => {
-          console.log(json);
           this.setState({ translatedText: json.translated_text });
         });
       return;
     } else {
       const url =
-        "http://0.0.0.0:8000/translate/chinese?originText=" + originText;
+        NGROK_PREFIX + "translate/chinese?originText=" + originText;
       fetch(url, {
         method: "get",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+        }),
       })
         .then((res) => res.json())
         .then((json) => {
-          console.log(json);
           this.setState({ translatedText: json.translated_text });
         });
     }
@@ -42,13 +48,15 @@ export default class Main extends React.Component<
 
   handleSetEnglish = () => {
     const url =
-      "http://0.0.0.0:8000/translate/english?originText=" + this.state.translatedText;
+      NGROK_PREFIX + "translate/english?originText=" + this.state.translatedText;
     fetch(url, {
       method: "get",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         this.setState({ translatedText: json.translated_text });
       });
   };
