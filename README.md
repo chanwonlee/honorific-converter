@@ -1,6 +1,6 @@
 # 한국어 텍스트 스타일 변환 이메일 시스템
 
-- 배포 URL:
+- 배포 URL: https://dailymailapp.vercel.app/
 
 ## 프로젝트 소개
 
