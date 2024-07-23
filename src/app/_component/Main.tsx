@@ -16,36 +16,52 @@ export default class Main extends React.Component<
   }
 
   handleTranslate = (originText: string) => {
-    this.setState({ loading: true }); // 로딩 시작
+    this.setState({ loading: true }); // 로딩 시작,
     const url =
       this.props.language === "한국어"
-        ? `${NGROK_PREFIX}translate/korean?originText=${originText}`
-        : `${NGROK_PREFIX}translate/chinese?originText=${originText}`;
+        ? `${NGROK_PREFIX}/translate/korean?originText=${originText}`
+        : `${NGROK_PREFIX}/translate/chinese?originText=${originText}`;
 
     fetch(url, {
       method: "get",
       headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
-      }),
+        "ngrok-skip-browser-warning": "69420"
+      })
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status} ${res.statusText}`);
+        }
+        return res.json();
+      })
       .then((json) => {
         this.setState({ translatedText: json.translated_text, loading: false }); // 로딩 종료
+      })
+      .catch(() => {
+        this.setState({ loading: false }); // 오류 메시지 설정 및 로딩 종료
       });
   };
 
   handleSetEnglish = () => {
-    this.setState({ loading: true }); // 로딩 시작
-    const url = `${NGROK_PREFIX}translate/english?originText=${this.state.translatedText}`;
+    this.setState({ loading: true }); // 로딩 시작, 오류 메시지 초기화
+    const url = `${NGROK_PREFIX}/translate/english?originText=${this.state.translatedText}`;
     fetch(url, {
       method: "get",
       headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
-      }),
+        "ngrok-skip-browser-warning": "69420"
+      })
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status} ${res.statusText}`);
+        }
+        return res.json();
+      })
       .then((json) => {
         this.setState({ translatedText: json.translated_text, loading: false }); // 로딩 종료
+      })
+      .catch(() => {
+        this.setState({ loading: false }); // 오류 메시지 설정 및 로딩 종료
       });
   };
 
@@ -55,7 +71,8 @@ export default class Main extends React.Component<
         <TranslateForm onSubmit={this.handleTranslate} />
         {this.state.loading && (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-            <div className="loader"></div> {/* 로딩 화면 */}
+            <div className="loader"></div>
+            {/* 로딩 화면 */}
           </div>
         )}
         <TranslateResult
